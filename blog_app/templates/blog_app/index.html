@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home page
+{% endblock %}
+
+
+{% block content %}
+<section class="my-4">
+    {% include './components/index/_slider.html' %}
+</section>
+<!-- screenreader
+доступность сайта
+python manage.py
+
+product manager
+тех задание
+
+scrum
+
+дизайн - 30дней - 7 дней - 7 дней
+фронт - 30дней - 7 дней
+бэк - 40дней - 7 дней
+-->
+<section class="mb-4">
+    <h2 class="text-center mb-4">Статьи</h2>
+    <div class="row row-gap-4">
+        {% for article in articles %}
+        <div class="col-12 col-md-6 col-lg-3">
+            {% include 'components/_article-card.html' %}
+        </div>
+        {% endfor %}
+    </div>
+    {% include 'components/_pagination.html' %}
+</section>
+
+<section class="mb-4">
+    <h2 class="text-center mb-4">FAQ</h2>
+    {% include 'components/_faq.html'  %}
+</section>
+{% endblock content %}
+
+
+<!-- 
+    Добавить страницу articles
+    
+    
+    создать функции для отображения файла внутри views.py
+    написать новую ссылку внутри urls.py
+    добавить новую кнопку в header
+    
+ -->

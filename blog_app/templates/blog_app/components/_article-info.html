@@ -1,0 +1,15 @@
+<ul class="list-group">
+    <li class="list-group-item">
+        Категория: {{ article.category.name }}
+    </li>
+    <li class="list-group-item">
+        Автор: {{ article.author }}
+    </li>
+    <li class="list-group-item">
+        Дата: {{ article.created_at }}
+    </li>
+    <li class="list-group-item">Просмотры: {{ article.views }}</li>
+    <li class="list-group-item">Лайки: {{ total_likes }}</li>
+    <li class="list-group-item">Дизлайки: {{ total_dislikes }}</li>
+    <li class="list-group-item">Кол-во комментариев: 0</li>
+</ul>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Список статей
+{% endblock %}
+
+{% block content %}
+<div class="row mt-5">
+    <div class="col-2">
+        <ul class="list-group">
+            {% for category in categories %}
+            <li class="list-group-item">
+                <a href="?category={{ category.slug }}">{{ category }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-10">
+        <div class="row row-gap-4">
+            {% for article in articles %}
+            <div class="col-4">{% include 'components/_article-card.html' %}</div>
+            {% endfor %}
+        </div>
+        {% include 'components/_pagination.html' %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+Профиль
+{% endblock %}
+
+{% block content %}
+<div class="my-5">
+    <div class="row">
+        <div class="col-6">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Имя: <b>{{ request.user.first_name }}</b>
+                </li>
+                <li class="list-group-item">Юзернейм: <b>{{ request.user.username }}</b></li>
+                <li class="list-group-item">Почта: <b>{{ request.user.email }}</b></li>
+                <li class="list-group-item">Дата регистрации: <b>{{ request.user.date_joined }}</b></li>
+            </ul>
+        </div>
+        <div class="col-6">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Кол-во статей: <b>{{ total_articles }}</b>
+                </li>
+                <li class="list-group-item">кол-во лайков: <b>{{ total_likes }}</b></li>
+                <li class="list-group-item">кол-во дизлайков: <b>{{ total_dislikes }}</b></li>
+                <li class="list-group-item">кол-во просмотров: <b>{{ total_views }}</b></li>
+                <li class="list-group-item">кол-во комментариев: <b>User</b></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row row-gap-4">
+        {% for article in articles %}
+        <div class="col-4">{% include 'components/_article-card.html' %}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

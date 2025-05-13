@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Поиск
+{% endblock %}
+
+{% block content %}
+<div class="my-5">
+    <div class="mb-5 fs-2 text-center"> 
+        Результаты поиска: <b>"{{ query }}"</b>
+        Найдено:   <b>{{ total_articles }}</b>
+    </div>
+        
+    <div class="row">
+        {% for article in articles %}
+        <div class="col-3">{% include 'components/_article-card.html' %}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+

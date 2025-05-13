@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ article.name }}
+{% endblock %}
+
+{% block content %}
+<div class="row mt-5">
+    <div class="col-6">
+        {% include './components/_article-gallery.html' %}
+    </div>
+    <div class="col-6">
+        {% include './components/_article-info.html' %}
+        
+        {% if request.user.is_authenticated and request.user != article.author %}
+        <div class="d-flex gap-3 mt-3">
+            <a href="{% url 'add_vote' article.pk 'add_like' %}" class="btn btn-success">Лайк</a>
+            <a href="{% url 'add_vote' article.pk 'add_dislike' %}" class="btn btn-danger">Дизлайк</a>
+        </div>
+        {% elif request.user.is_authenticated and request.user == article.author %}
+        <div class="d-flex gap-3 mt-3">
+            <a href="{% url 'update' article.pk %}" class="btn btn-warning">Изменить</a>
+            <a href="{% url 'delete' article.pk %}" class="btn btn-danger">Удалить</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="my-5">
+    <h2 class="text-center mb-3">Полное описание</h2>
+    <p>{{ article.full_description }}</p>
+</div>
+
+<div class="mb-5">
+    <h2 class="text-center mb-3">Комментарии</h2>
+
+    {% for comment in comments %}
+        {% include './components/_comment-card.html' %}
+    {% endfor %}
+
+    
+    <form method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button class="btn btn-dark mt-3">отправить</button>
+    </form>
+</div>
+
+{% comment %} 
+pip install django 
+pip install pillow
+pip install python-slugify
+{% endcomment %}
+{% endblock %}

@@ -1,0 +1,18 @@
+<div class="accordion" id="accordionExample">
+  {% for faq in faqs %}
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-{{ faq.pk }}" aria-expanded="{% if forloop.first %}true{% endif %}" aria-controls="accordion-{{ faq.pk }}">
+          {{ faq.title }}
+        </button>
+      </h2>
+      <div id="accordion-{{ faq.pk }}" class="accordion-collapse collapse 
+      {% if forloop.first %}show{% endif %}" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          {{ faq.description }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
